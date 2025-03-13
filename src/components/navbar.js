@@ -22,9 +22,9 @@ const Navbar = () => {
       <Icon
         name={icon}
         size={30}
-        color={activeTab === name ? '#FF8B37' : '#382A6B'}
+        color={activeTab === name ? '#FF8B37' : '#fff'}
       />
-      <Text style={{color: '#382A6B', textAlign: 'center'}}>{name}</Text>
+      <Text style={{color: '#fff', textAlign: 'center'}}>{name}</Text>
       {activeTab === name && (
         <Animated.View
           style={{
@@ -42,7 +42,7 @@ const Navbar = () => {
   return (
     <View
       style={{
-        backgroundColor: '#D7CDFA',
+        backgroundColor: 'blue',
         flexDirection: 'row',
         justifyContent: 'space-around',
         alignItems: 'center',

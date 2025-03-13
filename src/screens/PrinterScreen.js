@@ -33,26 +33,38 @@ const PrinterScreen = () => {
   };
 
   return (
-    <ScrollView contentContainerStyle={{padding: 20}}>
-      <Text style={{fontSize: 20, fontWeight: 'bold', marginBottom: 10}}>
-        Bluetooth Printers:
-      </Text>
-      {printers.map((printer, index) => (
-        <TouchableOpacity
-          key={index}
-          onPress={() => printText(printer.macAddress)}
+    <View style={{flex: 1, backgroundColor: 'blue'}}>
+      <ScrollView
+        contentContainerStyle={{
+          padding: 20,
+          flexGrow: 1,
+        }}>
+        <Text
           style={{
-            padding: 10,
-            backgroundColor: '#007bff',
+            fontSize: 20,
+            fontWeight: 'bold',
             marginBottom: 10,
-            borderRadius: 5,
+            color: '#fff',
           }}>
-          <Text style={{color: 'white'}}>
-            {printer.deviceName || 'Unknown Printer'} ({printer.macAddress})
-          </Text>
-        </TouchableOpacity>
-      ))}
-    </ScrollView>
+          Bluetooth Printers:
+        </Text>
+        {printers.map((printer, index) => (
+          <TouchableOpacity
+            key={index}
+            onPress={() => printText(printer.macAddress)}
+            style={{
+              padding: 10,
+              backgroundColor: '#FF8B37',
+              marginBottom: 10,
+              borderRadius: 5,
+            }}>
+            <Text style={{color: 'white'}}>
+              {printer.deviceName || 'Unknown Printer'} ({printer.macAddress})
+            </Text>
+          </TouchableOpacity>
+        ))}
+      </ScrollView>
+    </View>
   );
 };
 

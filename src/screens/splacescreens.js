@@ -26,7 +26,7 @@ class SplashScreen extends Component {
     return (
       <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
         <Image
-          source={require('../components/images/logo_PJV.png')}
+          source={require('../components/images/logoPJV.jpg')}
           style={{width: 85.08, height: 265}}
         />
       </View>

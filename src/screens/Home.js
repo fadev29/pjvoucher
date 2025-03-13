@@ -4,13 +4,18 @@ import LinearGradient from 'react-native-linear-gradient';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Navbar from '../components/navbar';
 import {useNavigation} from '@react-navigation/native';
+import Icon from 'react-native-vector-icons/FontAwesome6';
+import {dasbor} from '../api/dasbor';
 
 function Home() {
   const [nama, setNama] = useState('');
   const [tipe, setTipe] = useState('');
   const navigation = useNavigation();
+  const [saldoUtama, setSaldoUtama] = useState(0);
+  const [saldoBonus, setSaldoBonus] = useState(0);
+
   useEffect(() => {
-    const fetchUsername = async () => {
+    const fetchUserData = async () => {
       try {
         const nama = await AsyncStorage.getItem('@nama');
         const tipe = await AsyncStorage.getItem('@tipe');
@@ -18,19 +23,26 @@ function Home() {
           setNama(nama);
           setTipe(tipe);
         }
+
+        // Fetch data saldo dari API
+        const response = await dasbor();
+        if (response) {
+          setSaldoUtama(response.saldo_utama || 0);
+          setSaldoBonus(response.saldo_bonus || 0);
+        }
       } catch (error) {
-        console.log('Error fetching username:', error);
+        console.log('Error fetching data:', error);
       }
     };
 
-    fetchUsername();
+    fetchUserData();
   }, []);
 
   return (
     <>
       <View>
         <LinearGradient
-          colors={['#D7CDFA', '#7B5FF1']}
+          colors={['blue', '#FF8B37']}
           style={{
             width: '100%',
             height: '50%',
@@ -50,20 +62,71 @@ function Home() {
             justifyContent: 'space-between',
           }}>
           <View style={{flex: 1, gap: 5}}>
-            <Text style={{fontSize: 21, color: '#400040', fontWeight: 'bold'}}>
-              HI, {nama}
+            <Text style={{fontSize: 21, color: '#fff', fontWeight: 'bold'}}>
+              Halo, {nama}
             </Text>
-            <Text style={{fontSize: 16, color: '#400040', fontWeight: '700'}}>
+            <Text
+              style={{
+                fontSize: 16,
+                color: '#FF8B37',
+                fontWeight: '700',
+                fontFamily: 'Poppins-Regular',
+                textTransform: 'capitalize',
+              }}>
               {tipe}
             </Text>
-            <Text style={{fontSize: 14, color: '#400040'}}>PJ Voucher</Text>
+            <Text style={{fontSize: 14, color: '#fff'}}>PJ Voucher</Text>
+            <View style={{flexDirection: 'row', gap: 10}}>
+              <View
+                style={{
+                  width: 50,
+                  height: 50,
+                  alignItems: 'center',
+                  flexDirection: 'row',
+                  justifyContent: 'center',
+                  left: 150,
+                  top: 15,
+                  gap: 10,
+                }}>
+                <View style={{flexDirection: 'row', right: 20}}>
+                  <Icon
+                    name="wallet"
+                    size={30}
+                    color="blue"
+                    style={{right: 10}}
+                  />
+                  <Text
+                    style={{
+                      fontSize: 20,
+                      fontWeight: 'bold',
+                      color: '#fff',
+                      marginHorizontal: 10,
+                      flexDirection: 'row',
+                    }}>
+                    {saldoUtama}
+                  </Text>
+                </View>
+
+                <Icon name="gift" size={30} color="red" />
+                <Text style={{fontSize: 20, fontWeight: 'bold', color: '#fff'}}>
+                  {saldoBonus}
+                </Text>
+              </View>
+            </View>
           </View>
 
           <TouchableOpacity onPress={() => navigation.navigate('ProfileUser')}>
-            <Image
-              source={require('../components/images/pp.png')}
-              style={{width: 60, height: 50}}
-            />
+            <View
+              style={{
+                width: 50,
+                height: 50,
+                borderRadius: 50,
+                backgroundColor: '#FF8B37',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}>
+              <Icon name="user" size={30} color="#fff" />
+            </View>
           </TouchableOpacity>
         </LinearGradient>
       </View>
@@ -74,7 +137,7 @@ function Home() {
             width: 562,
             height: 562,
             borderRadius: 400,
-            backgroundColor: '#382A6B',
+            backgroundColor: '#FF8B37',
             justifyContent: 'center',
             alignItems: 'center',
             alignSelf: 'center',
@@ -84,7 +147,7 @@ function Home() {
               width: 485,
               height: 485,
               borderRadius: 300,
-              backgroundColor: '#7D5EEE',
+              backgroundColor: 'blue',
               justifyContent: 'center',
               alignItems: 'center',
               alignSelf: 'center',
@@ -120,7 +183,7 @@ function Home() {
             style={{
               width: 321,
               height: 139,
-              backgroundColor: '#7D5EEE',
+              backgroundColor: '#FF8B37',
               marginLeft: 50,
               borderRadius: 15,
               flexDirection: 'row',
@@ -149,7 +212,7 @@ function Home() {
             style={{
               width: 321,
               height: 139,
-              backgroundColor: '#7D5EEE',
+              backgroundColor: '#FF8B37',
               marginLeft: 50,
               borderRadius: 15,
               flexDirection: 'row',
@@ -177,7 +240,7 @@ function Home() {
             style={{
               width: 321,
               height: 139,
-              backgroundColor: '#7D5EEE',
+              backgroundColor: '#FF8B37',
               marginLeft: 50,
               borderRadius: 15,
               flexDirection: 'row',

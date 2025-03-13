@@ -21,7 +21,6 @@ function DetailPembelian({route}) {
 
   const [printers, setPrinters] = useState([]);
   const [selectedPrinter, setSelectedPrinter] = useState(null);
-
   useEffect(() => {
     if (jumlahPembelian > 0) {
       ToastAndroid.show(
@@ -139,7 +138,7 @@ Jenis Voucher:  ${transaksiDetail.jenis_voucher}
       {transaksi.map((transaksiDetail, index) => (
         <View key={index} style={{marginBottom: 20}}>
           <Image
-            source={require('../components/images/VOUCHER2.jpg')}
+            source={require('../components/images/VOUCHER1.jpg')}
             style={{
               width: 370,
               height: 156,
@@ -153,7 +152,7 @@ Jenis Voucher:  ${transaksiDetail.jenis_voucher}
               fontWeight: 'bold',
               marginTop: -150,
               left: 90,
-              color: '#382A6B',
+              color: '#fff',
             }}>
             Jenis Voucher: {transaksiDetail.jenis_voucher}
           </Text>
@@ -161,10 +160,11 @@ Jenis Voucher:  ${transaksiDetail.jenis_voucher}
             style={{
               fontWeight: 'bold',
               marginTop: 20,
-              left: 90,
-              color: '#382A6B',
+              left: 85,
+              color: '#fff',
+              fontSize: 12.5,
             }}>
-            Pelanggan: {transaksiDetail.nama_pelanggan}
+            Pelanggan: {transaksiDetail.keterangan}
           </Text>
           <Text
             style={{
@@ -172,14 +172,14 @@ Jenis Voucher:  ${transaksiDetail.jenis_voucher}
               marginTop: 30,
               textAlign: 'center',
               fontSize: 30,
-              color: '#382A6B',
+              color: '#fff',
             }}>
             {transaksiDetail.voucher}
           </Text>
           <TouchableOpacity
             style={{
               flexDirection: 'row',
-              backgroundColor: '#382A6B',
+              backgroundColor: '#FF8B37',
               width: 75,
               height: 30,
               top: -128,

@@ -51,14 +51,14 @@ function GantiPassword() {
   };
 
   return (
-    <SafeAreaView style={{flex: 1, backgroundColor: '#F8F8F8'}}>
+    <SafeAreaView style={{flex: 1, backgroundColor: 'blue'}}>
       <ScrollView contentContainerStyle={{padding: 20}}>
         <Text
           style={{
             fontSize: 22,
             fontWeight: 'bold',
             marginBottom: 20,
-            color: '#382A6B',
+            color: '#fff',
           }}>
           Ganti Password
         </Text>

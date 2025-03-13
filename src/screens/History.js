@@ -138,7 +138,7 @@ Tanggal: ${transaction.tanggal} WIB
             onPress={() => setSelectedPrinter(printer)}
             style={{
               padding: 10,
-              backgroundColor: '#9747FF',
+              backgroundColor: '#FF8B37',
               marginBottom: 10,
               borderRadius: 5,
             }}>
@@ -157,7 +157,7 @@ Tanggal: ${transaction.tanggal} WIB
           return (
             <View key={transaction.uniqueKey}>
               <Image
-                source={require('../components/images/VOUCHER2.jpg')}
+                source={require('../components/images/VOUCHER1.jpg')}
                 style={{
                   flex: 1,
                   justifyContent: 'center',
@@ -173,7 +173,7 @@ Tanggal: ${transaction.tanggal} WIB
                   fontWeight: 'bold',
                   marginTop: -150,
                   left: 70,
-                  color: '#382A6B',
+                  color: '#fff',
                 }}>
                 Tanggal: {'\n'}
                 {transaction.tanggal} WIB
@@ -184,7 +184,7 @@ Tanggal: ${transaction.tanggal} WIB
                   fontWeight: 'bold',
                   marginBottom: 15,
                   left: 70,
-                  color: '#382A6B',
+                  color: '#fff',
                 }}>
                 Pelanggan: {customerName}
               </Text>
@@ -194,7 +194,7 @@ Tanggal: ${transaction.tanggal} WIB
                   fontWeight: 'bold',
                   textAlign: 'center',
                   fontSize: 30,
-                  color: '#382A6B',
+                  color: '#fff',
                   left: 25,
                   top: 10,
                 }}>
@@ -204,7 +204,7 @@ Tanggal: ${transaction.tanggal} WIB
               <TouchableOpacity
                 style={{
                   flexDirection: 'row',
-                  backgroundColor: '#382A6B',
+                  backgroundColor: '#FF8B37',
                   width: 75,
                   height: 30,
                   top: -100,
@@ -231,6 +231,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 15,
+    backgroundColor: '#ECE7FC',
   },
   title: {
     fontSize: 24,

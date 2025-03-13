@@ -79,9 +79,9 @@ function ProfileUser() {
   }
 
   return (
-    <View style={{flex: 1, backgroundColor: '#F8F8F8'}}>
+    <View style={{flex: 1, backgroundColor: 'blue'}}>
       <LinearGradient
-        colors={['#D7CDFA', '#7B5FF1']}
+        colors={['#D7CDFA', '#FF8B37']}
         style={{
           width: '100%',
           height: '8%',
@@ -90,9 +90,9 @@ function ProfileUser() {
           paddingHorizontal: 20,
         }}>
         <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Icon name="arrow-left" size={30} color="#382A6B" />
+          <Icon name="arrow-left" size={30} color="#fff" />
         </TouchableOpacity>
-        <Text style={{color: '#382A6B', fontSize: 20, marginLeft: 20}}>
+        <Text style={{color: '#fff', fontSize: 20, marginLeft: 20}}>
           Profile User
         </Text>
       </LinearGradient>
@@ -102,18 +102,18 @@ function ProfileUser() {
             width: 100,
             height: 100,
             borderRadius: 50,
-            backgroundColor: '#D7CDFA',
+            backgroundColor: '#FF8B37',
             alignItems: 'center',
             justifyContent: 'center',
           }}>
-          <Icon name="shop" size={40} color="#382A6B" />
+          <Icon name="shop" size={40} color="#fff" />
         </View>
 
         <Text
           style={{
             fontSize: 20,
             fontWeight: 'bold',
-            color: '#382A6B',
+            color: '#fff',
             marginTop: 15,
           }}>
           {profile?.type || 'Toko'}
@@ -152,12 +152,12 @@ const InfoRow = ({icon, text}) => {
         borderRadius: 10,
         marginBottom: 10,
       }}>
-      <Icon name={icon} size={30} color="#382A6B" />
+      <Icon name={icon} size={30} color="#fff" />
       <Text
         style={{
           fontSize: 18,
           fontWeight: 'bold',
-          color: '#382A6B',
+          color: '#fff',
           marginLeft: 15,
         }}>
         {text}

@@ -62,13 +62,13 @@ class Login extends Component {
 
   render() {
     return (
-      <View style={{flex: 1, alignItems: 'center', backgroundColor: '#F8F8F8'}}>
+      <View style={{flex: 1, alignItems: 'center', backgroundColor: 'blue'}}>
         <View
           style={{
             width: 300,
             height: 300,
             borderRadius: 150,
-            backgroundColor: '#382A6B',
+            backgroundColor: '#FF8B37',
             position: 'absolute',
             top: -30,
             alignSelf: 'center',
@@ -109,6 +109,7 @@ class Login extends Component {
               marginBottom: 5,
               fontSize: 14,
               fontWeight: 'bold',
+              color: '#fff',
             }}>
             Tipe
           </Text>
@@ -118,9 +119,9 @@ class Login extends Component {
             style={{
               width: '100%',
               height: 50,
-              backgroundColor: '#D7CDFA',
+              backgroundColor: '#fff',
               borderRadius: 10,
-              color: '#382A6B',
+              color: '#888',
             }}>
             <Picker.Item label="Pelanggan" value="pelanggan" />
             <Picker.Item label="Reseller" value="reseller" />

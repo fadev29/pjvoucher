@@ -33,6 +33,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: 'bold',
     marginBottom: 5,
+    color: '#fff',
   },
   input: {
     height: 50,

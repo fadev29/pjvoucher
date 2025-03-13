@@ -18,14 +18,14 @@ function Button({children, onPress}) {
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: '#9747FF',
+    backgroundColor: '#FF8B37',
     padding: 10,
     borderRadius: 5,
     alignItems: 'center',
     transition: 'all 0.3s ease',
   },
   buttonPressed: {
-    backgroundColor: '#7A34D1',
+    backgroundColor: '#FF8B37',
     transform: [{scale: 0.98}],
   },
   text: {

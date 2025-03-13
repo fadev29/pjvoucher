@@ -29,7 +29,7 @@ export const belivoucher = async () => {
   }
 };
 
-export const pembelianVoucher = async (jenis, nama, jumlah) => {
+export const pembelianVoucher = async (jenis, nama, jumlah, bonus) => {
   try {
     const token = await AsyncStorage.getItem('@token');
 
@@ -42,6 +42,7 @@ export const pembelianVoucher = async (jenis, nama, jumlah) => {
         jenis,
         nama,
         jumlah,
+        bonus,
       },
       {
         headers: {
