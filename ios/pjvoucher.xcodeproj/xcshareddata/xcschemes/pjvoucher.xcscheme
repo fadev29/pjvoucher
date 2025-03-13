@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "pvj.app"
-               BlueprintName = "pvj"
-               ReferencedContainer = "container:pvj.xcodeproj">
+               BuildableName = "pjvoucher.app"
+               BlueprintName = "pjvoucher"
+               ReferencedContainer = "container:pjvoucher.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "pvjTests.xctest"
-               BlueprintName = "pvjTests"
-               ReferencedContainer = "container:pvj.xcodeproj">
+               BuildableName = "pjvoucherTests.xctest"
+               BlueprintName = "pjvoucherTests"
+               ReferencedContainer = "container:pjvoucher.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "pvj.app"
-            BlueprintName = "pvj"
-            ReferencedContainer = "container:pvj.xcodeproj">
+            BuildableName = "pjvoucher.app"
+            BlueprintName = "pjvoucher"
+            ReferencedContainer = "container:pjvoucher.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "pvj.app"
-            BlueprintName = "pvj"
-            ReferencedContainer = "container:pvj.xcodeproj">
+            BuildableName = "pjvoucher.app"
+            BlueprintName = "pjvoucher"
+            ReferencedContainer = "container:pjvoucher.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
