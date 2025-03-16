@@ -111,7 +111,19 @@ function Home() {
                       justifyContent: 'center',
                       right: 40,
                     }}>
-                    Rp {saldoUtama}
+                    Rp
+                  </Text>
+                  <Text
+                    style={{
+                      fontSize: 20,
+                      fontWeight: 'bold',
+                      color: '#fff',
+                      alignItems: 'center',
+                      flexDirection: 'row',
+                      justifyContent: 'center',
+                      right: 35,
+                    }}>
+                    {saldoUtama}
                   </Text>
                 </View>
 
