@@ -53,6 +53,12 @@ export const pembelianVoucher = async (jenis, nama, jumlah, bonus) => {
       },
     );
     console.log('data masuk:  ', response.data);
+    console.log('📤 Data yang dikirim ke API:', {
+      jenis,
+      nama,
+      jumlah,
+      bonus,
+    });
 
     return response.data;
   } catch (error) {

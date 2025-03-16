@@ -10,7 +10,7 @@ import PembelianVoucher from './screens/PembelianVoucher';
 import ProfileUser from './screens/ProfileUser';
 import GantiPassword from './screens/GantiPassword';
 import PrinterScreen from './screens/PrinterScreen';
-
+import HistoryPelanggan from './screens/HistoryPelanggan';
 const Stack = createNativeStackNavigator();
 
 const App = () => {
@@ -28,6 +28,7 @@ const App = () => {
         <Stack.Screen name="ProfileUser" component={ProfileUser} />
         <Stack.Screen name="GantiPassword" component={GantiPassword} />
         <Stack.Screen name="PrinterScreen" component={PrinterScreen} />
+        <Stack.Screen name="HistoryPelanggan" component={HistoryPelanggan} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -13,7 +13,7 @@ import {dasbor} from '../api/dasbor';
 import Icon from 'react-native-vector-icons/FontAwesome6';
 import ThermalPrinterModule from 'react-native-thermal-printer';
 
-const History = () => {
+const HistoryPelanggan = () => {
   const [transactions, setTransactions] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -79,7 +79,6 @@ const History = () => {
 ===============================
           ${voucherCode}
 ===============================
-Pelanggan: ${customerName}
 Tanggal: ${transaction.tanggal} WIB
 ===============================
         TERIMA KASIH
@@ -154,7 +153,9 @@ Tanggal: ${transaction.tanggal} WIB
             transaction.keterangan.split(' Untuk');
 
           return (
-            <View key={transaction.uniqueKey}>
+            <View
+              key={transaction.uniqueKey}
+              style={styles.transactionContainer}>
               <Image
                 source={require('../components/images/VOUCHER1.jpg')}
                 style={{
@@ -177,17 +178,6 @@ Tanggal: ${transaction.tanggal} WIB
                 Tanggal: {'\n'}
                 {transaction.tanggal} WIB
               </Text>
-
-              <Text
-                style={{
-                  fontWeight: 'bold',
-                  marginBottom: 15,
-                  left: 70,
-                  color: '#fff',
-                }}>
-                Pelanggan: {customerName}
-              </Text>
-
               <Text
                 style={{
                   fontWeight: 'bold',
@@ -231,6 +221,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 15,
     backgroundColor: '#ECE7FC',
+    gap: 10,
   },
   title: {
     fontSize: 24,
@@ -246,6 +237,9 @@ const styles = StyleSheet.create({
     color: 'red',
     fontSize: 18,
   },
+  transactionContainer: {
+    gap: 10,
+  },
 });
 
-export default History;
+export default HistoryPelanggan;

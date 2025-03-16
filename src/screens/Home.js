@@ -23,8 +23,6 @@ function Home() {
           setNama(nama);
           setTipe(tipe);
         }
-
-        // Fetch data saldo dari API
         const response = await dasbor();
         if (response) {
           setSaldoUtama(response.saldo_utama || 0);
@@ -37,6 +35,14 @@ function Home() {
 
     fetchUserData();
   }, []);
+
+  const handleHistoryPress = () => {
+    if (tipe === 'reseller') {
+      navigation.navigate('History');
+    } else {
+      navigation.navigate('HistoryPelanggan');
+    }
+  };
 
   return (
     <>
@@ -91,24 +97,44 @@ function Home() {
                 <View style={{flexDirection: 'row', right: 20}}>
                   <Icon
                     name="wallet"
-                    size={30}
+                    size={25}
                     color="blue"
-                    style={{right: 10}}
+                    style={{right: 50}}
                   />
                   <Text
                     style={{
                       fontSize: 20,
                       fontWeight: 'bold',
                       color: '#fff',
-                      marginHorizontal: 10,
+                      alignItems: 'center',
                       flexDirection: 'row',
+                      justifyContent: 'center',
+                      right: 40,
                     }}>
-                    {saldoUtama}
+                    Rp {saldoUtama}
                   </Text>
                 </View>
 
-                <Icon name="gift" size={30} color="red" />
-                <Text style={{fontSize: 20, fontWeight: 'bold', color: '#fff'}}>
+                <Icon name="gift" size={25} color="red" style={{left: 59}} />
+                <Text
+                  style={{
+                    fontSize: 20,
+                    fontWeight: 'bold',
+                    color: '#fff',
+                    left: 59,
+                  }}>
+                  Rp
+                </Text>
+                <Text
+                  style={{
+                    fontSize: 20,
+                    fontWeight: 'bold',
+                    color: '#fff',
+                    alignItems: 'center',
+                    flexDirection: 'row',
+                    justifyContent: 'center',
+                    left: 55,
+                  }}>
                   {saldoBonus}
                 </Text>
               </View>
@@ -124,6 +150,8 @@ function Home() {
                 backgroundColor: '#FF8B37',
                 alignItems: 'center',
                 justifyContent: 'center',
+                marginRight: 10,
+                marginTop: -40,
               }}>
               <Icon name="user" size={30} color="#fff" />
             </View>
@@ -205,9 +233,7 @@ function Home() {
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity
-          onPress={() => navigation.navigate('History')}
-          style={{opacity: 1}}>
+        <TouchableOpacity onPress={handleHistoryPress} style={{opacity: 1}}>
           <View
             style={{
               width: 321,

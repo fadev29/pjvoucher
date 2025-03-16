@@ -13,19 +13,21 @@ import Button from '../components/button';
 import {useNavigation} from '@react-navigation/native';
 import Modal from 'react-native-modal';
 import {dasbor} from '../api/dasbor';
-import Checkbok from '../components/checkbok';
+import CheckBox from '../components/checkbox';
 
 function PembelianVoucher() {
   const [jenisVoucher, setJenisVoucher] = useState([]);
   const [selectedVoucher, setSelectedVoucher] = useState('');
-  const [selectedJumlah, setSelectedJumlah] = useState('1');
+  const [selectedJumlah, setSelectedJumlah] = useState(1);
   const [saldoUtama, setSaldoUtama] = useState(null);
+  const [saldoBonus, setSaldoBonus] = useState(null);
   const [loading, setLoading] = useState(false);
   const [nama, setNama] = useState('');
   const navigation = useNavigation();
   const [isModalVisible, setModalVisible] = useState(false);
-  const [isBonus, setIsBonus] = useState(false); // State checkbox
+  const [isBonus, setIsBonus] = useState(false);
   const [tipePengguna, setTipePengguna] = useState('pelanggan');
+
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
@@ -34,7 +36,6 @@ function PembelianVoucher() {
     setIsBonus(prevState => !prevState);
   };
 
-  // Ambil data voucher
   const fetchVoucher = useCallback(async () => {
     setLoading(true);
     try {
@@ -51,13 +52,13 @@ function PembelianVoucher() {
     }
   }, []);
 
-  // Ambil saldo utama dari dasbor
   const fetchSaldo = useCallback(async () => {
     try {
       const response = await dasbor();
       if (response) {
         setSaldoUtama(response.saldo_utama);
-        setTipePengguna(response.tipe); // Pastikan API mengembalikan tipe pengguna
+        setSaldoBonus(response.saldo_bonus);
+        setTipePengguna(response.tipe);
       }
     } catch (error) {
       Alert.alert('Error', 'Gagal mengambil data saldo');
@@ -75,8 +76,24 @@ function PembelianVoucher() {
       return;
     }
 
-    if (saldoUtama === 0) {
-      Alert.alert('Gagal', 'Saldo utama tidak mencukupi untuk pembelian.');
+    if (saldoUtama === 0 && saldoBonus === 0) {
+      Alert.alert(
+        'Gagal',
+        'Saldo utama dan saldo bonus tidak mencukupi untuk pembelian.',
+      );
+      return;
+    }
+
+    let gunakanBonus = 0;
+    if (isBonus && saldoBonus >= selectedJumlah) {
+      gunakanBonus = 1;
+    } else if (saldoUtama >= selectedJumlah) {
+      gunakanBonus = 0;
+    } else {
+      Alert.alert(
+        'Gagal',
+        'Saldo utama tidak mencukupi dan saldo bonus tidak bisa digunakan.',
+      );
       return;
     }
 
@@ -86,7 +103,7 @@ function PembelianVoucher() {
         selectedVoucher,
         nama,
         selectedJumlah,
-        isBonus ? 1 : 0, // ✅ Kirim 1 jika dicentang, 0 jika tidak
+        gunakanBonus,
       );
 
       if (response) {
@@ -147,28 +164,34 @@ function PembelianVoucher() {
             style={styles.input}
             placeholder="Nama/No HP Pelanggan"
             value={nama}
-            onChangeText={text => setNama(text)}
+            onChangeText={setNama}
             selectionColor="blue"
             placeholderTextColor="#888"
           />
           <Text style={styles.label}>Jumlah</Text>
           <Picker
             selectedValue={selectedJumlah}
-            onValueChange={itemValue => setSelectedJumlah(itemValue)}
+            onValueChange={itemValue =>
+              setSelectedJumlah(parseInt(itemValue, 10))
+            }
             style={styles.picker}>
             {[...Array(10).keys()].map(i => (
-              <Picker.Item key={i} label={`${i + 1}`} value={`${i + 1}`} />
+              <Picker.Item key={i} label={`${i + 1}`} value={i + 1} />
             ))}
           </Picker>
           {tipePengguna === 'reseller' && (
             <View style={styles.checkboxContainer}>
-              <Checkbok checked={isBonus} onPress={handleCheckboxToggle} />
+              <CheckBox
+                isChecked={isBonus}
+                onPress={handleCheckboxToggle}
+                label="Beli Pakai Saldo Bonus"
+              />
             </View>
           )}
 
           <Button
             onPress={handlePembelianVoucher}
-            disabled={loading || saldoUtama === 0}>
+            disabled={loading || (saldoUtama === 0 && saldoBonus === 0)}>
             {loading ? 'Processing...' : 'Beli Voucher'}
           </Button>
         </View>
@@ -202,7 +225,8 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginBottom: 20,
     justifyContent: 'center',
-    color: '#888',
+    paddingHorizontal: 10,
+    color: '#000',
   },
   input: {
     marginBottom: 20,
@@ -211,15 +235,8 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 50,
   },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 20,
-    color: '#fff',
-  },
-  errorText: {
-    color: 'red',
-    fontSize: 14,
+  checkboxContainer: {
+    flexDirection: 'row',
     marginBottom: 20,
   },
   modalContent: {
@@ -233,11 +250,29 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: 'green',
   },
-  checkboxContainer: {
-    flexDirection: 'row',
-    marginBottom: 20,
-    right: 75,
-    bottom: 10,
+  errorText: {
+    color: 'red',
+    fontSize: 18,
+  },
+  button: {
+    backgroundColor: '#FF8B37',
+    padding: 10,
+    borderRadius: 5,
+    alignItems: 'center',
+    transition: 'all 0.3s ease',
+  },
+  buttonPressed: {
+    backgroundColor: '#FF8B37',
+    transform: [{scale: 0.98}],
+  },
+  text: {
+    color: 'white',
+    fontSize: 16,
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#fff',
   },
 });
 

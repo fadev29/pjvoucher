@@ -1,4 +1,3 @@
-import React, {useState} from 'react';
 import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 
 const CheckBox = ({isChecked, onPress, label}) => {
@@ -12,26 +11,7 @@ const CheckBox = ({isChecked, onPress, label}) => {
   );
 };
 
-function Checkbok() {
-  const [isChecked, setIsChecked] = useState(false);
-
-  return (
-    <View style={styles.wrapper}>
-      <CheckBox
-        isChecked={isChecked}
-        onPress={() => setIsChecked(!isChecked)}
-        label="Beli Pakai Saldo Bonus"
-      />
-    </View>
-  );
-}
-
 const styles = StyleSheet.create({
-  wrapper: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
   container: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -60,4 +40,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Checkbok;
+export default CheckBox;

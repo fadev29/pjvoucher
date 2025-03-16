@@ -151,7 +151,7 @@ Jenis Voucher:  ${transaksiDetail.jenis_voucher}
             style={{
               fontWeight: 'bold',
               marginTop: -150,
-              left: 90,
+              left: 70,
               color: '#fff',
             }}>
             Jenis Voucher: {transaksiDetail.jenis_voucher}
@@ -160,11 +160,11 @@ Jenis Voucher:  ${transaksiDetail.jenis_voucher}
             style={{
               fontWeight: 'bold',
               marginTop: 20,
-              left: 85,
+              left: 70,
               color: '#fff',
               fontSize: 12.5,
             }}>
-            Pelanggan: {transaksiDetail.keterangan}
+            Pelanggan: {transaksiDetail.nama_pelanggan}
           </Text>
           <Text
             style={{
