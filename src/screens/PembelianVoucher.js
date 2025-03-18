@@ -110,9 +110,12 @@ function PembelianVoucher() {
         toggleModal();
         setTimeout(() => {
           setModalVisible(false);
-          navigation.navigate('DetailPembelian', {
-            voucherData: response,
-          });
+          navigation.navigate(
+            tipePengguna === 'reseller'
+              ? 'DetailPembelian'
+              : 'DetailPembelianPelanggan',
+            {voucherData: response},
+          );
         }, 2000);
       }
     } catch (error) {

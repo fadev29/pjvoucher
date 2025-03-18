@@ -1,16 +1,11 @@
-import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {API_VOUCHER} from '@env';
-
-const api = API_VOUCHER;
-
-console.log('API URL:', api);
+import apiClient from './apiClient';
 
 export const login = async (username, tipe, password) => {
   try {
     console.log('Login request:', {username, tipe, password});
 
-    const response = await axios.post(`${api}/login`, {
+    const response = await apiClient.post('/login', {
       username,
       tipe,
       password,
@@ -18,8 +13,7 @@ export const login = async (username, tipe, password) => {
 
     console.log('Login response:', response.data);
 
-    // Setelah login berhasil, simpan token, username, dan tipe
-    const {token, nama: user, tipe: userTipe} = response.data; // Misalnya data login ada di response.data
+    const {token, nama: user, tipe: userTipe} = response.data;
     await saveToken(token, user, userTipe);
 
     return {status: true, response: response.data};
@@ -36,12 +30,15 @@ export const login = async (username, tipe, password) => {
     }
   }
 };
+
 const saveToken = async (token, nama, tipe) => {
   try {
     await AsyncStorage.setItem('@token', token);
     console.log('Token saved:', token);
     await AsyncStorage.setItem('@nama', nama);
     await AsyncStorage.setItem('@tipe', tipe);
+
+    apiClient.defaults.headers.common['Authorization'] = `Bearer ${token}`;
   } catch (e) {
     console.log('Error saving data:', e);
   }

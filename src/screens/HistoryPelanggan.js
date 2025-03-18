@@ -79,6 +79,7 @@ const HistoryPelanggan = () => {
 ===============================
           ${voucherCode}
 ===============================
+Jumlah: ${transaction.jumlah}
 Tanggal: ${transaction.tanggal} WIB
 ===============================
         TERIMA KASIH

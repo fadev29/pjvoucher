@@ -5,14 +5,14 @@ import Input from '../components/input';
 import Button from '../components/button';
 import {login} from '../api/login';
 import Icon from 'react-native-vector-icons/FontAwesome6';
-
+import {navigate} from '../navigation/navigationService';
 class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
       username: '',
       password: '',
-      tipe: 'pelanggan',
+      tipe: 'reseller',
       secureTextEntry: true,
       loading: false,
       errorMessage: '',

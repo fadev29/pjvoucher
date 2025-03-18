@@ -11,11 +11,13 @@ import ProfileUser from './screens/ProfileUser';
 import GantiPassword from './screens/GantiPassword';
 import PrinterScreen from './screens/PrinterScreen';
 import HistoryPelanggan from './screens/HistoryPelanggan';
+import DetailPembelianPelanggan from './screens/DetailPembelianPelanggan';
+import {navigationRef} from './navigation/navigationService';
 const Stack = createNativeStackNavigator();
 
 const App = () => {
   return (
-    <NavigationContainer>
+    <NavigationContainer ref={navigationRef}>
       <Stack.Navigator
         initialRouteName="SplashScreen"
         screenOptions={{headerShown: false}}>
@@ -29,6 +31,10 @@ const App = () => {
         <Stack.Screen name="GantiPassword" component={GantiPassword} />
         <Stack.Screen name="PrinterScreen" component={PrinterScreen} />
         <Stack.Screen name="HistoryPelanggan" component={HistoryPelanggan} />
+        <Stack.Screen
+          name="DetailPembelianPelanggan"
+          component={DetailPembelianPelanggan}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

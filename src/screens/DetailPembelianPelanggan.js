@@ -11,7 +11,7 @@ import {
 import Icon from 'react-native-vector-icons/FontAwesome6';
 import ThermalPrinterModule from 'react-native-thermal-printer';
 
-function DetailPembelian({route}) {
+function DetailPembelianPelanggan({route}) {
   const {voucherData} = route.params;
 
   console.log('DetailPembelian Data:', voucherData);
@@ -42,7 +42,10 @@ function DetailPembelian({route}) {
   };
 
   const handlePrint = async transaksiDetail => {
-    const [customerName, tanggal] = transaksiDetail.nama_pelanggan.split('  ');
+    const parts = transaksiDetail.keterangan.split(' ');
+    const customerName = parts.slice(0, -2).join(' ');
+    const tanggal = `${parts[parts.length - 2]} ${parts[parts.length - 1]}`;
+
     if (!selectedPrinter) {
       Alert.alert(
         'Printer Belum Dipilih',
@@ -60,10 +63,9 @@ function DetailPembelian({route}) {
 ===============================
            ${transaksiDetail.voucher}
 ===============================
-reseller: ${transaksiDetail.nama_reseller}
+Jenis Voucher:  ${transaksiDetail.jenis_voucher}
 Pelanggan: ${customerName}
 Tanggal: ${tanggal} WIB
-Jenis Voucher:  ${transaksiDetail.jenis_voucher}
 ===============================
         TERIMA KASIH
 ===============================
@@ -103,18 +105,19 @@ Jenis Voucher:  ${transaksiDetail.jenis_voucher}
 
     try {
       for (const transaksiDetail of transaksi) {
-        const [customerName, tanggal] =
-          transaksiDetail.nama_pelanggan.split('  ');
+        const parts = transaksiDetail.keterangan.split(' ');
+        const customerName = parts.slice(0, -2).join(' ');
+        const tanggal = `${parts[parts.length - 2]} ${parts[parts.length - 1]}`;
+
         const printText = `
 ===============================
         VOUCHER CODE
 ===============================
            ${transaksiDetail.voucher}
 ===============================
-reseller: ${transaksiDetail.nama_reseller}
+Jenis Voucher:  ${transaksiDetail.jenis_voucher}
 Pelanggan: ${customerName}
 Tanggal: ${tanggal} WIB
-Jenis Voucher:  ${transaksiDetail.jenis_voucher}
 ===============================
         TERIMA KASIH
 ===============================
@@ -226,23 +229,52 @@ Jenis Voucher:  ${transaksiDetail.jenis_voucher}
             }}>
             Jenis Voucher: {transaksiDetail.jenis_voucher}
           </Text>
-          <Text style={{left: 85, color: '#fff', top: 10}}>
-            reseller: {transaksiDetail.nama_reseller}
-          </Text>
+
+          {(() => {
+            const parts = transaksiDetail.keterangan.split(' ');
+            const namaPelanggan = parts.slice(0, -2).join(' ');
+            const tanggal = parts[parts.length - 2];
+            const waktu = parts[parts.length - 1];
+
+            return (
+              <>
+                <Text
+                  style={{
+                    fontWeight: 'bold',
+                    marginTop: 5,
+                    left: 85,
+                    color: '#fff',
+                    fontSize: 12.5,
+                  }}>
+                  Pelanggan: {namaPelanggan}
+                </Text>
+                <Text
+                  style={{
+                    fontWeight: 'bold',
+                    marginTop: 5,
+                    left: 85,
+                    color: '#fff',
+                    fontSize: 12.5,
+                  }}>
+                  Tanggal: {tanggal}
+                </Text>
+                <Text
+                  style={{
+                    fontWeight: 'bold',
+                    marginTop: 5,
+                    left: 85,
+                    color: '#fff',
+                    fontSize: 12.5,
+                  }}>
+                  Waktu: {waktu} WIB
+                </Text>
+              </>
+            );
+          })()}
           <Text
             style={{
               fontWeight: 'bold',
-              marginTop: 20,
-              left: 85,
-              color: '#fff',
-              fontSize: 12.5,
-            }}>
-            Pelanggan: {transaksiDetail.nama_pelanggan}
-          </Text>
-          <Text
-            style={{
-              fontWeight: 'bold',
-              marginTop: 30,
+              marginTop: 15,
               textAlign: 'center',
               fontSize: 30,
               color: '#fff',
@@ -273,4 +305,4 @@ Jenis Voucher:  ${transaksiDetail.jenis_voucher}
   );
 }
 
-export default DetailPembelian;
+export default DetailPembelianPelanggan;

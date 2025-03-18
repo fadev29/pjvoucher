@@ -24,7 +24,7 @@ export const dasbor = async () => {
 
     return response.data;
   } catch (error) {
-    console.error(
+    console.log(
       '❌ Error fetching dashboard:',
       error.response?.data || error.message,
     );
